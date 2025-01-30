@@ -1,3 +1,12 @@
+# :tada: Compartytion :tada: Web Server 
+
+![react version](https://img.shields.io/github/package-json/dependency-version/magae1/compartytion-web/react?logo=React&color=61DAFB)
+![next version](https://img.shields.io/github/package-json/dependency-version/magae1/compartytion-web/next?logo=Nextdotjs&color=black)
+
+프로젝트 컴파티션 웹 서버 코드 저장소입니다.
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
