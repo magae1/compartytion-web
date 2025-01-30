@@ -1,5 +1,6 @@
 # :tada: Compartytion :tada: Web Server 
 
+![chromatic](https://github.com/magae1/compartytion-web/actions/workflows/chromatic.yml/badge.svg)
 ![react version](https://img.shields.io/github/package-json/dependency-version/magae1/compartytion-web/react?logo=React&color=61DAFB)
 ![next version](https://img.shields.io/github/package-json/dependency-version/magae1/compartytion-web/next?logo=Nextdotjs&color=black)
 
