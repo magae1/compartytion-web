@@ -1,4 +1,5 @@
 "use client";
+
 import { useFormStatus } from "react-dom";
 
 type LabelType = {
@@ -12,9 +13,10 @@ interface Props {
    */
   label?: LabelType;
 }
+
 export default function SubmitButton({
-  label = { default: "제출", pending: "제출 중..." },
-}: Props) {
+                                       label = { default: "제출", pending: "제출 중..." }
+                                     }: Props) {
   const { pending } = useFormStatus();
 
   return (
