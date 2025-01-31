@@ -18,12 +18,8 @@ export default function SubmitButton({
   const { pending } = useFormStatus();
 
   return (
-    <button
-      type={"submit"}
-      className={"btn btn-info btn-sm"}
-      disabled={pending}
-    >
-      {pending && <span className={"loading loading-spinner"}></span>}
+    <button type="submit" className="btn btn-info btn-sm" disabled={pending}>
+      {pending && <span className="loading loading-spinner"></span>}
       {pending ? label.pending : label.default}
     </button>
   );
