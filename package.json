@@ -33,7 +33,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "chromatic": "^11.25.1",
+    "chromatic": "^11.25.2",
     "cssnano": "^7.0.6",
     "daisyui": "^4.12.23",
     "eslint": "^9",
