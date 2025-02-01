@@ -5,9 +5,9 @@ const meta = {
   title: "Components/SubmitButton",
   component: SubmitButton,
   parameters: {
-    layout: "centered"
+    layout: "centered",
   },
-  tags: ["autodocs"]
+  tags: ["autodocs"],
 } satisfies Meta<typeof SubmitButton>;
 
 export default meta;
@@ -17,7 +17,8 @@ export const Primary: Story = {
   args: {
     label: {
       default: "제출하기",
-      pending: "제출 중"
-    }
-  }
+      pending: "제출 중",
+    },
+    mt: "mt-0",
+  },
 };
