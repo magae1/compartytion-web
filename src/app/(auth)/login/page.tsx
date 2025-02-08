@@ -1,21 +1,39 @@
 "use client";
 
-import { FormEvent, RefObject, useRef, useState } from "react";
+import { FormEvent, RefObject, useEffect, useRef, useState } from "react";
 import { MdEmail, MdError } from "react-icons/md";
 
 import BaseInput from "@/components/BaseInput";
 import SubmitButton from "@/components/SubmitButton";
 import OtpForm from "@/app/(auth)/_components/OtpForm";
 import LoginForm from "@/app/(auth)/_components/LoginForm";
-import { checkEmailExistence } from "@/app/(auth)/_libs/actions";
+import {
+  checkEmailExistence,
+  sendEmailOtp,
+  verifyEmailOtp,
+} from "@/app/(auth)/_libs/actions";
 import { EmailForm } from "@/app/(auth)/_libs/type";
 
 export default function LoginPage() {
   const emailInputRef = useRef<HTMLInputElement>(null);
+  const handleOtpSendRef = useRef<{ handleOtpSend: () => void } | null>(null);
   const [mode, setMode] = useState<"default" | "otp" | "login">("default");
 
+  useEffect(() => {
+    if (mode === "otp") {
+      handleOtpSendRef.current?.handleOtpSend();
+    }
+  }, [mode]);
+
   if (mode === "otp") {
-    return <OtpForm email={emailInputRef.current?.value ?? ""} />;
+    return (
+      <OtpForm
+        email={emailInputRef.current?.value ?? ""}
+        handleOtpSendRef={handleOtpSendRef}
+        sendOtpAction={sendEmailOtp}
+        verifyOtpAction={verifyEmailOtp}
+      />
+    );
   } else if (mode === "login") {
     return <LoginForm email={emailInputRef.current?.value ?? ""} />;
   }
@@ -73,7 +91,13 @@ function JoinForm(props: JoinProps) {
           message={messages}
           ref={inputRef}
         />
-        <SubmitButton mt={isError ? "mt-1" : "mt-3"} />
+        <SubmitButton
+          label={{
+            default: "계속",
+            pending: "진행 중...",
+          }}
+          mt={isError ? "mt-1" : "mt-3"}
+        />
       </form>
     </>
   );

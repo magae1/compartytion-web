@@ -1,7 +1,7 @@
-import SignupForm from "@/app/(auth)/_components/SignupForm";
 import { SearchParams } from "@/libs/type";
+import ChangePasswordForm from "@/app/(auth)/_components/ChangPasswordForm";
 
-export default async function SignupPage(props: {
+export default async function ChangePasswordPage(props: {
   searchParams: SearchParams;
 }) {
   const searchParams = await props.searchParams;
@@ -13,7 +13,7 @@ export default async function SignupPage(props: {
 
   return (
     <div className="container mx-auto max-w-80 p-4">
-      <SignupForm email={email} />
+      <ChangePasswordForm email={email} />
     </div>
   );
 }

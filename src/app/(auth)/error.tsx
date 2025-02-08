@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 
-import { ErrorProps } from "@/type";
+import { ErrorProps } from "@/libs/type";
 
 export default function Error({ error }: ErrorProps) {
   useEffect(() => {

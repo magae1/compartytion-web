@@ -1,6 +1,6 @@
 export type EmailForm = {
   email: string | null;
-}
+};
 
 export type EmailExistence = {
   email: string;
@@ -17,5 +17,10 @@ export type SignupForm = {
 } & LoginForm;
 
 export type OtpVerificationForm = {
-  otp: string | null
+  otp: string | null;
 } & EmailForm;
+
+export type ChangePasswordForm = {
+  newPassword: string | null;
+  newConfirmedPassword: string | null;
+};

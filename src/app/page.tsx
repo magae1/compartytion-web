@@ -5,11 +5,7 @@ import Header from "@/components/Header";
 export default function Home() {
   return (
     <>
-      <Header>
-        <Link href="/login" className="btn btn-accent btn-sm">
-          로그인
-        </Link>
-      </Header>
+      <Header />
       <div className="hero min-h-screen">
         <div className="hero-content text-center">
           <div className="max-w-md">

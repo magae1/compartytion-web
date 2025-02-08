@@ -43,6 +43,10 @@ interface Props {
    */
   ref?: Ref<HTMLInputElement | null>;
   /**
+   * input 라벨 뒤쪽에 위치할 추가 컴포넌트
+   */
+  tail?: ReactNode;
+  /**
    * input의 자동완성 속성
    */
   autoComplete?: HTMLInputAutoCompleteAttribute;
@@ -58,6 +62,7 @@ export default function BaseInput({
   type = "text",
   isError = false,
   icon,
+  tail,
   autoComplete,
 }: Props) {
   return (
@@ -67,7 +72,9 @@ export default function BaseInput({
           <span className="label-text">{label}</span>
         </div>
       )}
-      <div className="input input-bordered flex items-center gap-x-2">
+      <div
+        className={`input input-bordered flex items-center gap-x-2 ${tail && "pr-2"}`}
+      >
         {icon}
         <input
           type={type}
@@ -78,6 +85,7 @@ export default function BaseInput({
           defaultValue={defaultValue}
           autoComplete={autoComplete}
         />
+        {tail}
       </div>
       {message && (
         <div className="label flex-col items-start">
