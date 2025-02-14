@@ -16,3 +16,9 @@ export interface ErrorProps {
 export type SearchParams = Promise<{
   [key: string]: string | string[] | undefined;
 }>;
+
+export type SimpleAccount = {
+  username: string;
+  email: string;
+  avatar: string | null;
+};

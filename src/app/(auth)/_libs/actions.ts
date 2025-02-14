@@ -1,6 +1,8 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
 
 import { ActionType, ResType } from "@/libs/type";
 import {
@@ -12,7 +14,6 @@ import {
   SignupForm,
 } from "@/app/(auth)/_libs/type";
 import { baseFetcher } from "@/libs/fetchers";
-import { cookies } from "next/headers";
 import { parseCookie } from "@/libs/parsers";
 import { SESSION_COOKIE_NAME } from "@/libs/constants";
 
@@ -117,6 +118,7 @@ export async function login(
         });
       }
     });
+    revalidateTag("/accounts");
     redirect("/dashboard");
   }
 
