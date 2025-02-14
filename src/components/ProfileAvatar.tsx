@@ -15,19 +15,16 @@ const bgColors: string[][] = [
 interface Props {
   username: string;
   avatar: string | null;
-  size?: number;
 }
 
-export default function ProfileAvatar({ username, avatar, size = 8 }: Props) {
-  const width = `w-${size}`;
-
+export default function ProfileAvatar({ username, avatar }: Props) {
   if (!avatar) {
     const char = (username.at(0) ?? "").toUpperCase();
     const idx: number = getRandomIndex(username, bgColors.length);
     return (
       <div className="avatar placeholder h-full w-full">
         <div
-          className={`${width} rounded-full ${bgColors[idx][0]} ${bgColors[idx][1]}`}
+          className={`w-full rounded-full ${bgColors[idx][0]} ${bgColors[idx][1]}`}
         >
           <span>{char}</span>
         </div>
@@ -37,7 +34,7 @@ export default function ProfileAvatar({ username, avatar, size = 8 }: Props) {
 
   return (
     <div className="avatar h-full w-full">
-      <div className={`${width} rounded-full`}>
+      <div className="w-full rounded-full">
         <Image src={avatar} alt={username} />
       </div>
     </div>

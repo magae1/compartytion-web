@@ -5,7 +5,18 @@ import Header from "@/components/Header";
 export default function Home() {
   return (
     <>
-      <Header />
+      <Header
+        head={
+          <Link href="/" className="btn btn-ghost no-animation gap-x-0">
+            Compartytion
+          </Link>
+        }
+        tail={
+          <Link href="/login" className="btn btn-primary btn-sm">
+            로그인
+          </Link>
+        }
+      />
       <div className="hero min-h-screen">
         <div className="hero-content text-center">
           <div className="max-w-md">
