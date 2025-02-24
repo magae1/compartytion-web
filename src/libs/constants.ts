@@ -4,4 +4,6 @@ export const BASE_HEADERS: HeadersInit = {
 };
 export const BAD_REQUEST_CODE: number = 400;
 
-export const SESSION_COOKIE_NAME = "JSESSIONID";
+export const SESSION_COOKIE_NAME = "SESSION";
+
+export const DRAWER_ID = "drawer-id";

@@ -1,29 +1,47 @@
 import { ReactNode } from "react";
 
-import MainHeader from "@/app/(main)/_components/MainHeader";
-import DrawerSidebar from "@/app/(main)/_components/DrawerSidebar";
+import { LuMenu } from "react-icons/lu";
+
+import DrawerHeader from "@/components/DrawerHeader";
+import { DRAWER_ID } from "@/libs/constants";
+import Header from "@/components/Header";
+import HeaderButtonGroup from "@/components/HeaderButtonGroup";
 
 interface Props {
   children: ReactNode;
+  sidebar: ReactNode;
 }
 
-export default function MainLayout({ children }: Props) {
-  const drawerId: string = "mainDrawer";
-
+export default function MainLayout({ children, sidebar }: Props) {
   return (
     <div className="drawer lg:drawer-open">
-      <input id={drawerId} type="checkbox" className="drawer-toggle" />
+      <input id={DRAWER_ID} type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <MainHeader drawerId={drawerId} />
+        <Header
+          display="sticky"
+          head={
+            <label
+              htmlFor={DRAWER_ID}
+              className="btn btn-square btn-ghost btn-sm h-10 w-10 border-base-300 lg:hidden"
+            >
+              <LuMenu size={19} />
+            </label>
+          }
+          tail={<HeaderButtonGroup />}
+        />
         {children}
       </div>
       <div className="drawer-side z-20">
         <label
-          htmlFor={drawerId}
+          htmlFor={DRAWER_ID}
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <DrawerSidebar drawerId={drawerId} />
+        <div className="flex h-full w-72 flex-col bg-base-200 sm:w-80">
+          <DrawerHeader />
+          <div className="header-size"></div>
+          <div className="flex-1 overflow-auto">{sidebar}</div>
+        </div>
       </div>
     </div>
   );

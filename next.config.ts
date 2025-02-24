@@ -14,15 +14,20 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/",
-        has: [{ type: "cookie", key: "JSESSIONID" }],
+        has: [{ type: "cookie", key: "SESSION" }],
         permanent: false,
         destination: "/dashboard",
       },
       {
         source: "/dashboard",
-        missing: [{ type: "cookie", key: "JSESSIONID" }],
+        missing: [{ type: "cookie", key: "SESSION" }],
         permanent: false,
         destination: "/login",
+      },
+      {
+        source: "/competitions/:id",
+        destination: "/competitions/:id/home",
+        permanent: false,
       },
     ];
   },
