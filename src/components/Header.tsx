@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Link from "next/link";
 
 interface Props {
   display?: "fixed" | "static" | "sticky";
@@ -9,7 +10,7 @@ interface Props {
 
 export default function Header({
   display = "fixed",
-  head,
+  head = <HeadLink />,
   tail,
   center = false,
 }: Props) {
@@ -24,5 +25,13 @@ export default function Header({
         <div className="flex flex-none items-center gap-x-2">{tail}</div>
       </div>
     </div>
+  );
+}
+
+function HeadLink() {
+  return (
+    <Link href="/" className="btn btn-ghost no-animation gap-x-0">
+      Compartytion
+    </Link>
   );
 }

@@ -25,6 +25,6 @@ export const baseFetcher = (subUrl: string, options: Options) => {
   });
 };
 
-export async function sleep() {
-  return new Promise((resolve) => setTimeout(resolve, 3000));
+export async function sleep(ms: number = 3000) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

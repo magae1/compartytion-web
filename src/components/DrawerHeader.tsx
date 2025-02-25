@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ReactNode } from "react";
 
 import { MdClose } from "react-icons/md";
 
@@ -6,23 +6,19 @@ import Header from "@/components/Header";
 import { DRAWER_ID } from "@/libs/constants";
 
 interface Props {
-  headerUrl?: string;
+  head?: ReactNode;
   display?: "fixed" | "static" | "sticky";
   hideCloseButton?: boolean;
 }
 
 export default function DrawerHeader({
-  headerUrl = "/",
+  head,
   display,
   hideCloseButton = false,
 }: Props) {
   return (
     <Header
-      head={
-        <Link href={headerUrl} className="btn btn-ghost no-animation">
-          Compartytion
-        </Link>
-      }
+      head={head}
       display={display}
       center={false}
       tail={

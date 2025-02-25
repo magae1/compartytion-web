@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import AuthHeader from "@/app/(auth)/_components/AuthHeader";
+import Header from "@/components/Header";
 
 interface Props {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface Props {
 export default function AuthLayout({ children }: Props) {
   return (
     <>
-      <AuthHeader />
+      <Header display="static" center={true} />
       <div className="container mx-auto max-w-screen-sm pt-6 sm:pt-8 md:pt-12 lg:pt-16">
         {children}
       </div>

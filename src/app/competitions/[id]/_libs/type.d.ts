@@ -7,3 +7,8 @@ export type Nav = {
   icon: ReactNode;
   subUrl: string;
 };
+
+export type CompetitionPermissions = {
+  isManager: boolean;
+  isParticipant: boolean;
+};

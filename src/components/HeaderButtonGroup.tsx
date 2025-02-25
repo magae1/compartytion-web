@@ -9,6 +9,7 @@ import { baseFetcher } from "@/libs/fetchers";
 import { SESSION_COOKIE_NAME } from "@/libs/constants";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import LogoutButton from "@/components/LogoutButton";
+import LoginButton from "@/components/LoginButton";
 
 export default async function HeaderButtonGroup() {
   const cookieStore = await cookies();
@@ -23,15 +24,11 @@ export default async function HeaderButtonGroup() {
       tags: ["accounts", "simple"],
     },
   });
+
   if (!res.ok) {
-    return <LoginButton />;
+    throw new Error("잘못된 인증 요청입니다.");
   }
-
-  const accountData = (await res.json()) as SimpleAccount | undefined;
-
-  if (!accountData) {
-    return <LoginButton />;
-  }
+  const accountData = (await res.json()) as SimpleAccount;
 
   return (
     <div className="dropdown dropdown-end">
@@ -66,13 +63,5 @@ export default async function HeaderButtonGroup() {
         </li>
       </ul>
     </div>
-  );
-}
-
-function LoginButton() {
-  return (
-    <Link href="/login" className="btn btn-accent btn-sm">
-      로그인
-    </Link>
   );
 }

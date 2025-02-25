@@ -5,7 +5,7 @@ import { LuMenu } from "react-icons/lu";
 import DrawerHeader from "@/components/DrawerHeader";
 import { DRAWER_ID } from "@/libs/constants";
 import Header from "@/components/Header";
-import HeaderButtonGroup from "@/components/HeaderButtonGroup";
+import HeaderTail from "@/components/HeaderTail";
 
 interface Props {
   children: ReactNode;
@@ -27,7 +27,7 @@ export default function MainLayout({ children, sidebar }: Props) {
               <LuMenu size={19} />
             </label>
           }
-          tail={<HeaderButtonGroup />}
+          tail={<HeaderTail />}
         />
         {children}
       </div>
@@ -39,7 +39,7 @@ export default function MainLayout({ children, sidebar }: Props) {
         ></label>
         <div className="flex h-full w-72 flex-col bg-base-200 sm:w-80">
           <DrawerHeader />
-          <div className="header-size"></div>
+          <div className="header-size" />
           <div className="flex-1 overflow-auto">{sidebar}</div>
         </div>
       </div>
