@@ -14,6 +14,7 @@ import BaseInput from "@/components/BaseInput";
 import SubmitButton from "@/components/SubmitButton";
 import { ActionType, ResType } from "@/libs/type";
 import { EmailForm, OtpVerificationForm } from "@/app/(auth)/_libs/type";
+import AuthForm from "@/app/(auth)/_components/AuthForm";
 
 interface Props {
   email?: string;
@@ -90,49 +91,47 @@ export default function OtpForm({
   const isError = state.code >= 400 && state.code < 500;
 
   return (
-    <form action={formAction} className="flex flex-col gap-y-1">
-      <BaseInput
-        name="email"
-        label="이메일"
-        placeholder="이메일을 입력해주세요"
-        icon={<MdEmail size={21} />}
-        message={state.message?.email}
-        isError={isError}
-        tail={
-          showOtpSendButton && (
-            <button
-              className="btn btn-accent btn-sm"
-              onClick={handleOnClickOtpSendButton}
-            >
-              전송
-            </button>
-          )
-        }
-        defaultValue={state.value.email ?? undefined}
-      />
+    <AuthForm action={formAction} legend="OTP 인증">
+      <div className="join">
+        <div className="join-item flex-1">
+          <BaseInput
+            name="email"
+            label="이메일"
+            placeholder="이메일을 입력해주세요"
+            icon={<MdEmail size={21} />}
+            message={state.message?.email}
+            isError={state.message && state.message.email && isError}
+            defaultValue={state.value.email ?? undefined}
+          />
+        </div>
+        {showOtpSendButton && (
+          <button
+            className="btn btn-neutral join-item"
+            onClick={handleOnClickOtpSendButton}
+          >
+            전송
+          </button>
+        )}
+      </div>
       <BaseInput
         name="otp"
         label="OTP"
         icon={<MdKey size={21} />}
         message={state.message?.otp}
         type="password"
-        isError={isError}
+        placeholder="OTP를 입력해주세요"
+        isError={state.message && state.message.otp && isError}
         defaultValue={state.value.otp ?? undefined}
       />
-      {state.detail && (
-        <span
-          className={`${isError ? "text-error" : "text-success"} label-text-alt`}
-        >
-          {state.detail}
-        </span>
-      )}
+      <span className={`${isError && "text-error"} fieldset-label`}>
+        {state.detail}
+      </span>
       <SubmitButton
         label={{
           default: "인증하기",
           pending: "확인 중...",
         }}
-        mt={state.message?.otp ? "mt-1" : "mt-4"}
       />
-    </form>
+    </AuthForm>
   );
 }

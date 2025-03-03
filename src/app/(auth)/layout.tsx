@@ -10,7 +10,7 @@ export default function AuthLayout({ children }: Props) {
   return (
     <>
       <Header display="static" center={true} />
-      <div className="container mx-auto max-w-screen-sm pt-6 sm:pt-8 md:pt-12 lg:pt-16">
+      <div className="mx-auto max-w-sm pt-6 sm:pt-8 md:pt-12 lg:pt-16">
         {children}
       </div>
     </>

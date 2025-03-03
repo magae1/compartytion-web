@@ -22,7 +22,7 @@ export default function ProfileAvatar({ username, avatar }: Props) {
     const char = (username.at(0) ?? "").toUpperCase();
     const idx: number = getRandomIndex(username, bgColors.length);
     return (
-      <div className="avatar placeholder h-full w-full">
+      <div className="avatar avatar-placeholder h-full w-full">
         <div
           className={`w-full rounded-full ${bgColors[idx][0]} ${bgColors[idx][1]}`}
         >

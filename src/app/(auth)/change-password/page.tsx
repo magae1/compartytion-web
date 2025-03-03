@@ -11,9 +11,5 @@ export default async function ChangePasswordPage(props: {
     email = "";
   }
 
-  return (
-    <div className="container mx-auto max-w-80 p-4">
-      <ChangePasswordForm email={email} />
-    </div>
-  );
+  return <ChangePasswordForm email={email} />;
 }

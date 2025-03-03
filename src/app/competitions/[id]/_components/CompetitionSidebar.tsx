@@ -7,7 +7,7 @@ interface Props {
 
 export default function CompetitionSidebar({ navs }: Props) {
   return (
-    <ul className="menu menu-lg">
+    <ul className="menu menu-lg w-full">
       {navs.map((n) => {
         return (
           <li key={n.label}>

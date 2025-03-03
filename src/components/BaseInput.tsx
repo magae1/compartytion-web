@@ -43,10 +43,6 @@ interface Props {
    */
   ref?: Ref<HTMLInputElement | null>;
   /**
-   * input 라벨 뒤쪽에 위치할 추가 컴포넌트
-   */
-  tail?: ReactNode;
-  /**
    * input의 자동완성 속성
    */
   autoComplete?: HTMLInputAutoCompleteAttribute;
@@ -62,18 +58,13 @@ export default function BaseInput({
   type = "text",
   isError = false,
   icon,
-  tail,
   autoComplete,
 }: Props) {
   return (
-    <label className="form-control w-full">
-      {label && (
-        <div className="pb-0.5 pl-1 pt-2">
-          <span className="label-text">{label}</span>
-        </div>
-      )}
+    <label className="floating-label">
+      <span className={isError ? "text-error" : undefined}>{label}</span>
       <div
-        className={`input input-bordered flex items-center gap-x-2 ${tail && "pr-2"}`}
+        className={`input flex w-full items-center gap-x-2 ${isError && "input-error"}`}
       >
         {icon}
         <input
@@ -85,19 +76,22 @@ export default function BaseInput({
           defaultValue={defaultValue}
           autoComplete={autoComplete}
         />
-        {tail}
       </div>
       {message && (
-        <div className="label flex-col items-start">
-          {message.map((m, i) => (
-            <span
-              key={i}
-              className={`label-text-alt ${isError && "text-error"}`}
-            >
-              {m}
-            </span>
-          ))}
-        </div>
+        <p className={`validator-hint ${isError && "text-error"}`}>
+          {message.reduce(
+            (s, m) => (
+              <>
+                {s}
+                <>
+                  {m}
+                  <br />
+                </>
+              </>
+            ),
+            <></>,
+          )}
+        </p>
       )}
     </label>
   );

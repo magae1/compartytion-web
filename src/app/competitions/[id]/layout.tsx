@@ -54,7 +54,7 @@ export default async function CompetitionLayout({ children, params }: Props) {
       <div className="drawer-content flex min-h-screen flex-col">
         <div className="header-size" />
         <div className="flex-1">{children}</div>
-        <div className="btm-nav md:hidden">
+        <div className="dock md:hidden">
           <CompetitionNavLinkList navs={filteredNavs} />
         </div>
       </div>
@@ -64,7 +64,7 @@ export default async function CompetitionLayout({ children, params }: Props) {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex h-full w-72 flex-col bg-base-100 sm:w-80">
+        <div className="bg-base-100 flex h-full w-72 flex-col sm:w-80">
           <DrawerHeader hideCloseButton />
           <div className="header-size" />
           <div className="flex-1 overflow-auto">

@@ -1,7 +1,10 @@
 "use client";
 
 import { useActionState, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import { MdPassword } from "react-icons/md";
+import { toast } from "react-toastify";
 
 import {
   changePassword,
@@ -13,8 +16,7 @@ import BaseInput from "@/components/BaseInput";
 import OtpForm from "@/app/(auth)/_components/OtpForm";
 import { ActionType } from "@/libs/type";
 import { OtpVerificationForm } from "@/app/(auth)/_libs/type";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import AuthForm from "@/app/(auth)/_components/AuthForm";
 
 interface Props {
   email: string;
@@ -50,7 +52,7 @@ export default function ChangePasswordForm({ email }: Props) {
     }
   }, [state]);
 
-  const isError = state.code >= 400 || state.code < 500;
+  const isError = 400 <= state.code && state.code < 500;
 
   return (
     <>
@@ -63,7 +65,7 @@ export default function ChangePasswordForm({ email }: Props) {
       {isOtpConfirmed && (
         <>
           <div className="divider"></div>
-          <form action={formAction} className="flex flex-col gap-y-1">
+          <AuthForm action={formAction} legend="비밀번호 변경">
             <input name="email" readOnly hidden defaultValue={email} />
             <BaseInput
               name="newPassword"
@@ -72,7 +74,7 @@ export default function ChangePasswordForm({ email }: Props) {
               icon={<MdPassword size={21} />}
               type="password"
               message={state.message?.newPassword}
-              isError={isError}
+              isError={state.message && state.message.newPassword && isError}
               autoComplete={"new-password"}
               defaultValue={state.value.newPassword ?? undefined}
             />
@@ -83,22 +85,19 @@ export default function ChangePasswordForm({ email }: Props) {
               icon={<MdPassword size={21} />}
               type="password"
               message={state.message?.newConfirmedPassword}
-              isError={isError}
+              isError={
+                state.message && state.message.newConfirmedPassword && isError
+              }
               autoComplete={"new-password"}
               defaultValue={state.value.newConfirmedPassword ?? undefined}
             />
-            {state.detail && (
-              <span
-                className={`label-text-alt ${isError ? "text-error" : "text-success"}`}
-              >
-                {state.detail}
-              </span>
-            )}
+            <p className={`fieldset-label ${isError && "text-error"}`}>
+              {state.detail}
+            </p>
             <SubmitButton
               label={{ default: "변경하기", pending: "제출 중..." }}
-              mt={state.message?.newConfirmedPassword ? "mt-1" : "mt-4"}
             />
-          </form>
+          </AuthForm>
         </>
       )}
     </>

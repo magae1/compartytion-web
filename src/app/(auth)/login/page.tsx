@@ -13,6 +13,7 @@ import {
   verifyEmailOtp,
 } from "@/app/(auth)/_libs/actions";
 import { EmailForm } from "@/app/(auth)/_libs/type";
+import AuthForm from "@/app/(auth)/_components/AuthForm";
 
 export default function LoginPage() {
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -30,6 +31,7 @@ export default function LoginPage() {
       <OtpForm
         email={emailInputRef.current?.value ?? ""}
         handleOtpSendRef={handleOtpSendRef}
+        showOtpSendButton
         sendOtpAction={sendEmailOtp}
         verifyOtpAction={verifyEmailOtp}
       />
@@ -81,13 +83,13 @@ function JoinForm(props: JoinProps) {
           <span>서비스를 이용할 수 없습니다.</span>
         </div>
       )}
-      <form className="flex flex-col gap-y-1" onSubmit={handleSubmit}>
+      <AuthForm onSubmit={handleSubmit} legend="로그인">
         <BaseInput
           label="이메일"
           placeholder="이메일을 입력해주세요"
           icon={<MdEmail size={21} />}
           name="email"
-          isError={isError}
+          isError={messages && isError}
           message={messages}
           ref={inputRef}
         />
@@ -96,9 +98,8 @@ function JoinForm(props: JoinProps) {
             default: "계속",
             pending: "진행 중...",
           }}
-          mt={isError ? "mt-1" : "mt-3"}
         />
-      </form>
+      </AuthForm>
     </>
   );
 }

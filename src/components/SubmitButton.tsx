@@ -27,7 +27,7 @@ export default function SubmitButton({
   return (
     <button
       type="submit"
-      className={`btn btn-info btn-sm ${mt}`}
+      className={`btn btn-sm btn-neutral ${mt}`}
       disabled={pending}
     >
       {pending && <span className="loading loading-spinner"></span>}

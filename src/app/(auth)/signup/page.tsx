@@ -11,9 +11,5 @@ export default async function SignupPage(props: {
     email = "";
   }
 
-  return (
-    <div className="container mx-auto max-w-80 p-4">
-      <SignupForm email={email} />
-    </div>
-  );
+  return <SignupForm email={email} />;
 }

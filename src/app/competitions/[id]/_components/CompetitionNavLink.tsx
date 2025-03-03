@@ -19,7 +19,7 @@ export default function CompetitionNavLink({ icon, subUrl, label }: Props) {
     <Link
       href={`/competitions/${id}/${subUrl}`}
       replace={true}
-      className={`${isActive && "active"}`}
+      className={`${isActive && "menu-active dock-active"}`}
     >
       {icon}
       {label}

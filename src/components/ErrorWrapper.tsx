@@ -23,7 +23,7 @@ export default function ErrorWrapper({
         </div>
         <div className="max-w-sm">
           <h1 className="text-3xl font-extrabold">{headline}</h1>
-          <div className="bordered my-6 rounded bg-base-200 p-2">
+          <div className="bordered my-6 rounded-sm bg-base-200 p-2">
             {children}
           </div>
           <EmojiFooter />

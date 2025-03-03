@@ -9,6 +9,7 @@ import BaseInput from "@/components/BaseInput";
 import { signup } from "@/app/(auth)/_libs/actions";
 import SubmitButton from "@/components/SubmitButton";
 import { toast } from "react-toastify";
+import AuthForm from "@/app/(auth)/_components/AuthForm";
 
 interface Props {
   email?: string;
@@ -36,14 +37,14 @@ export default function SignupForm({ email = "" }: Props) {
   const isError = state.code >= 400 && state.code < 500;
 
   return (
-    <form action={formAction} className="flex flex-col gap-y-1">
+    <AuthForm action={formAction} legend="회원가입">
       <BaseInput
         name="email"
         label="이메일"
         placeholder="이메일을 입력해주세요"
         icon={<MdEmail size={21} />}
         message={state.message?.email}
-        isError={isError}
+        isError={state.message && state.message.email && isError}
         autoComplete={"username"}
         defaultValue={state.value.email ?? undefined}
       />
@@ -53,7 +54,7 @@ export default function SignupForm({ email = "" }: Props) {
         placeholder="사용자명을 입력해주세요"
         message={state.message?.username}
         icon={<IoPerson size={21} />}
-        isError={isError}
+        isError={state.message && state.message.username && isError}
         autoComplete={"off"}
         defaultValue={state.value.username ?? undefined}
       />
@@ -64,7 +65,7 @@ export default function SignupForm({ email = "" }: Props) {
         icon={<MdPassword size={21} />}
         type="password"
         message={state.message?.password}
-        isError={isError}
+        isError={state.message && state.message.password && isError}
         autoComplete={"new-password"}
         defaultValue={state.value.password ?? undefined}
       />
@@ -75,17 +76,14 @@ export default function SignupForm({ email = "" }: Props) {
         icon={<MdPassword size={21} />}
         type="password"
         message={state.message?.confirmedPassword}
-        isError={isError}
+        isError={state.message && state.message.confirmedPassword && isError}
         autoComplete={"new-password"}
         defaultValue={state.value.confirmedPassword ?? undefined}
       />
-      {state.detail && (
-        <span className="label-text-alt text-error">{state.detail}</span>
-      )}
+      <span className="label-text-alt text-error">{state.detail}</span>
       <SubmitButton
-        mt={state.message?.confirmedPassword ? "mt-1" : "mt-4"}
         label={{ default: "회원가입하기", pending: "가입 중..." }}
       />
-    </form>
+    </AuthForm>
   );
 }
