@@ -6,6 +6,13 @@ export type ResType<T> = {
   };
 };
 
+export type PageRes<E> = {
+  totalCount: number;
+  page: number;
+  size: number;
+  results: E[];
+};
+
 export type ActionType<T> = ResType<T> & { value: T };
 
 export interface ErrorProps {
