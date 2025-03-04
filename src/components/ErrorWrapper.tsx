@@ -14,20 +14,23 @@ export default function ErrorWrapper({
   fill = false,
 }: Props) {
   return (
-    <div
-      className={`hero ${fill ? "min-h-screen" : "pt-4 sm:pt-8 md:pt-12 lg:pt-16"}`}
-    >
+    <div className={`hero ${fill ? "min-h-screen" : ""}`}>
       <div className="hero-content flex-col text-center">
         <div className="relative aspect-square w-full">
-          <Image src="/fluent-emoji/Warning.png" alt="wanring" fill />
+          <Image
+            src="/fluent-emoji/Warning.png"
+            alt="wanring"
+            fill
+            sizes="100%"
+          />
         </div>
         <div className="max-w-sm">
           <h1 className="text-3xl font-extrabold">{headline}</h1>
-          <div className="bordered my-6 rounded-sm bg-base-200 p-2">
+          <div className="bordered bg-base-200 my-6 rounded-sm px-8 py-4">
             {children}
           </div>
-          <EmojiFooter />
         </div>
+        <EmojiFooter />
       </div>
     </div>
   );

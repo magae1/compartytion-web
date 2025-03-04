@@ -1,3 +1,5 @@
+"use server";
+
 import { BASE_HEADERS, BASE_URL, SESSION_COOKIE_NAME } from "@/libs/constants";
 
 interface Options extends RequestInit {
@@ -5,7 +7,10 @@ interface Options extends RequestInit {
   sessionId?: string;
 }
 
-export const baseFetcher = (subUrl: string, options: Options) => {
+export const baseFetcher = async (
+  subUrl: string,
+  options: Options,
+): Promise<Response> => {
   const { method = "GET", headers, body, sessionId } = options;
   const baseHeader = sessionId
     ? {
@@ -17,12 +22,24 @@ export const baseFetcher = (subUrl: string, options: Options) => {
         ...BASE_HEADERS,
         ...headers,
       };
-  return fetch(BASE_URL + subUrl, {
-    ...options,
-    method: method,
-    headers: baseHeader,
-    body: body,
-  });
+
+  try {
+    return await fetch(BASE_URL + subUrl, {
+      ...options,
+      method: method,
+      headers: baseHeader,
+      body: body,
+    });
+  } catch (e) {
+    if (e instanceof Error) {
+      if (e.cause instanceof AggregateError) {
+        throw new Error(e.cause.errors[0].code);
+      }
+      throw new Error(e.message);
+    } else {
+      throw new Error("알 수 없는 오류가 발생했습니다.");
+    }
+  }
 };
 
 export async function sleep(ms: number = 3000) {
