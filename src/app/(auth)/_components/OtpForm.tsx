@@ -47,7 +47,7 @@ export default function OtpForm({
 
   const handleOtpSend = useCallback(() => {
     const toastDevId = toast.loading("OTP 전송 중...");
-    sendOtpAction(email)
+    sendOtpAction(state.value.email ?? "")
       .then((r) => {
         if (r.code >= 200 && r.code < 300) {
           toast.update(toastDevId, {

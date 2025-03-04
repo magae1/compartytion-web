@@ -44,9 +44,15 @@ export default async function CompetitionLayout({ children, params }: Props) {
     notFound();
   }
 
-  const isManager = await checkPermission(competitionId);
+  const permissions = await checkPermission(competitionId);
 
-  const filteredNavs = navs.filter((n) => isManager || n.label !== "관리");
+  if (!permissions.isManager && !permissions.isParticipant) {
+    throw new Error("접근할 수 없는 대회입니다.");
+  }
+
+  const filteredNavs = navs.filter(
+    (n) => permissions.isManager || n.label !== "관리",
+  );
 
   return (
     <div className="drawer md:drawer-open">
