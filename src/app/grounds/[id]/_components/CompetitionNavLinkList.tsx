@@ -1,5 +1,5 @@
-import CompetitionNavLink from "@/app/competitions/[id]/_components/CompetitionNavLink";
-import { Nav } from "@/app/competitions/[id]/_libs/type";
+import CompetitionNavLink from "@/app/grounds/[id]/_components/CompetitionNavLink";
+import { Nav } from "@/app/grounds/[id]/_libs/type";
 
 interface Props {
   navs: Nav[];

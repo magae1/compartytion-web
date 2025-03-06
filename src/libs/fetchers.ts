@@ -1,5 +1,3 @@
-"use server";
-
 import { BASE_HEADERS, BASE_URL, SESSION_COOKIE_NAME } from "@/libs/constants";
 
 interface Options extends RequestInit {

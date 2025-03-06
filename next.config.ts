@@ -25,8 +25,8 @@ const nextConfig: NextConfig = {
         destination: "/login",
       },
       {
-        source: "/competitions/:id",
-        destination: "/competitions/:id/home",
+        source: "/grounds/:id",
+        destination: "/grounds/:id/home",
         permanent: false,
       },
     ];

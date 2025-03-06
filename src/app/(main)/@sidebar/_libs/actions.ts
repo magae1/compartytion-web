@@ -26,7 +26,7 @@ export async function getJoinedCompetitionList(
 
   const list = pageResponse.results.map((r) => ({
     title: r.title,
-    link: `/competitions/${r.id}`,
+    link: `/grounds/${r.id}`,
   }));
 
   return {

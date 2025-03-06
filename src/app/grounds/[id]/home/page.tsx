@@ -1,4 +1,4 @@
-import { PathParams } from "@/app/competitions/[id]/_libs/type";
+import { PathParams } from "@/libs/type";
 
 interface Props {
   params: PathParams;

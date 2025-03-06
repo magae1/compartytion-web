@@ -29,3 +29,5 @@ export type SimpleAccount = {
   email: string;
   avatar: string | null;
 };
+
+export type PathParams = Promise<{ id: string }>;

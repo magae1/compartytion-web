@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 import { SESSION_COOKIE_NAME } from "@/libs/constants";
 import { baseFetcher } from "@/libs/fetchers";
-import { CompetitionPermissions } from "@/app/competitions/[id]/_libs/type";
+import { CompetitionPermissions } from "@/app/grounds/[id]/_libs/type";
 
 export async function checkPermission(
   competitionId: string,
