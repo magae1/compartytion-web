@@ -4,11 +4,12 @@ import { notFound } from "next/navigation";
 import { MdExplore, MdHome, MdPeople, MdSettings } from "react-icons/md";
 
 import { DRAWER_ID } from "@/libs/constants";
-import { Nav, PathParams } from "@/app/grounds/[id]/_libs/type";
+import { Nav } from "@/app/grounds/[id]/_libs/type";
 import DrawerHeader from "@/components/DrawerHeader";
 import CompetitionSidebar from "@/app/grounds/[id]/_components/CompetitionSidebar";
 import CompetitionNavLinkList from "@/app/grounds/[id]/_components/CompetitionNavLinkList";
 import { checkPermission } from "@/app/grounds/[id]/_libs/actions";
+import { PathParams } from "@/libs/type";
 
 const navs: Nav[] = [
   {

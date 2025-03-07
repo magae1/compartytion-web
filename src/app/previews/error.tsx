@@ -1,0 +1,18 @@
+"use client";
+
+import { useEffect } from "react";
+
+import { ErrorProps } from "@/libs/type";
+import ErrorWrapper from "@/components/ErrorWrapper";
+
+export default function PreviewsError({ error }: ErrorProps) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
+  return (
+    <ErrorWrapper fill>
+      <p>{error.message}</p>
+    </ErrorWrapper>
+  );
+}
